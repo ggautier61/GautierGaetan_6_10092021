@@ -8,7 +8,7 @@ const router = express.Router();
 //Configuration des routes sauces
 router.get('/', auth, multer, saucesCtrl.getAllSauces);
 router.post('/', auth, multer, saucesCtrl.createSauce);
-router.put('/:id', auth, saucesCtrl.modifySauce);
+router.put('/:id', auth, multer, saucesCtrl.modifySauce);
 router.delete('/:id', auth, saucesCtrl.deleteOneSauce);
 router.get('/:id', auth, saucesCtrl.getOneSauce);
 router.post('/:id/like', auth, saucesCtrl.addLike); 

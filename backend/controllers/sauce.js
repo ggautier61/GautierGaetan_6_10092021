@@ -29,8 +29,16 @@ exports.createSauce = (req, res) => {
 
 //fonction pour la modification d'une sauce pour la requete PUT par rapport à son id
 exports.modifySauce = (req, res) => {
-    Sauce.updateOne({ _id: req.params.id}, { ...req.body, _id: req.params.id })
-    .then(sauce => res.status(200).json({ message: 'Sauce modifiée!' }))
+
+    const sauceObject = req.file ? 
+        {   ...JSON.parse(req.body.sauce),
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : { ...req.body };
+    console.log(sauceObject);
+    
+    Sauce.updateOne({ _id: req.params.id}, { ...sauceObject , _id: req.params.id })
+    .then(sauce => {
+        res.status(200).json({ message: 'Sauce modifiée!' })})
     .catch(error => res.status(400).json({ error }));
 };
 
