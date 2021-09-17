@@ -3,6 +3,7 @@ const bobyParser = require('body-parser');
 const mongoose = require('mongoose');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 
 //Création de l'application
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
 
 //Utilisation de bodyParser
 app.use(bobyParser.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //configuration des routes de bases
 app.use('/api/sauces', sauceRoutes);
