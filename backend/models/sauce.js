@@ -40,8 +40,6 @@ const sauceModel = mongoose.Schema({
 
 });
 
-// sauceModel.plugin(sani)
-
 
 
 //exportation du model sauce pour être utilisable dans l'application

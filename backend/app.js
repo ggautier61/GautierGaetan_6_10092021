@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 //connexion à la base de données MongoDB en utilisant mongoose
-mongoose.connect('mongodb+srv://gaetan:gaetanpassword@cluster0.2x8kv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://gaetan:gaetanpassword@cluster0.2x8kv.mongodb.net/Hot_takes?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -29,6 +29,5 @@ app.use(bobyParser.json());
 //configuration des routes de bases
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
-
 
 module.exports = app;

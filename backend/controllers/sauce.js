@@ -9,10 +9,17 @@ exports.getAllSauces = (req, res) => {
 
 //fonction pour la création d'une nouvelle sauce pour la requète POST
 exports.createSauce = (req, res) => {
-    delete req.body._id;
+    const sauceObject = JSON.parse(req.body.sauce);
+    delete sauceObject._id;
     const sauce = new Sauce({
-        ...req.body
-    })
+        ...sauceObject,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        likes: 0,
+        dislikes: 0,
+        usersLiked: [],
+        usersDisliked: []
+    });
+    console.log(sauce);
     sauce.save()
     .then(() => res.status(201).json({ message: 'Nouvelle sauce créée!'}))
     .catch(error => res.status(400).json({ error }));
