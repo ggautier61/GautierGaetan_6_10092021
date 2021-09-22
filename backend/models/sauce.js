@@ -1,6 +1,7 @@
 
 //importation de Mongoose
 const mongoose = require('mongoose');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 
 const sauceModel = mongoose.Schema({
@@ -41,6 +42,8 @@ const sauceModel = mongoose.Schema({
 });
 
 
+// Plugin Mongoose pour nettoyer les données avant injection dans la base MongoDB
+sauceModel.plugin(sanitizerPlugin);
 
 //exportation du model sauce pour être utilisable dans l'application
 module.exports = mongoose.model('Sauce', sauceModel);

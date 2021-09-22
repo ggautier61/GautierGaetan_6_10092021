@@ -1,6 +1,6 @@
 # HOT TAKES #
 
-## Installation ##
+## Frontend Installation ##
 
 Here are the dependancies you need to install:
 - NodeJS 12.14 or 14.0.
@@ -9,15 +9,19 @@ Here are the dependancies you need to install:
 
 On Windows, these installations require to use PowerShell in administrator mode.
 
-The, clone this repo and run `npm install`.
+Then clone this repo, go to the folder `frontend` and run `npm install`.
 
 
-## Usage ##
+## Run Frontend ##
 
-Run `npm start`. This should both run the local server and launch your browser.
+From the folder `frontend`, run the command `npm start`. This should both run the local server and launch your browser.
 
 If your browser fails to launch, or shows a 404 error, navigate your browser to http://localhost:8080.
 
 The app should reload automatically when you make a change to a file.
 
 Use `Ctrl+C` in the terminal to stop the local server.
+
+## Backend Installation ##
+
+Go to the `backend` folder and run the commande `npm install`. 
