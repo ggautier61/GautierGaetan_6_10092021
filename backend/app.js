@@ -12,11 +12,14 @@ const helmet = require('helmet');
 
 //Création de l'application
 const app = express();
+//Importation de dotnet pour gerer les fichiers système
+require('dotenv').config();
 
 app.use(helmet()); // Utilisation de Helmet pour sécuriser l'app Express
 
-//connexion à la base de données MongoDB en utilisant mongoose
-mongoose.connect('mongodb+srv://gaetan:gaetanpassword@cluster0.2x8kv.mongodb.net/Hot_takes?retryWrites=true&w=majority',
+//connexion à la base de données MongoDB en utilisant mongoose.
+//Utilisation d'un fichier de configuration pour stocker login et mot de passe
+mongoose.connect('mongodb+srv://' + process.env.LOGIN_DB + ':' + process.env.PWD_DB + '@cluster0.2x8kv.mongodb.net/Hot_takes?retryWrites=true&w=majorityprocess.env.URL_DB',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

@@ -24,6 +24,7 @@ router.get('/', auth, saucesCtrl.getAllSauces);
 router.get('/:id', auth, saucesCtrl.getOneSauce);
 
 //Route pour poster un like ou un dislike
+//(like prend 3 valeurs. 1: like, -1: dislike et 0: suppression du like ou dislike)
 router.post('/:id/like', auth, saucesCtrl.LikeDislike); 
 
 module.exports = router;
