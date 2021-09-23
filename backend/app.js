@@ -1,13 +1,19 @@
 const express = require('express');
 const bobyParser = require('body-parser');
+//Importation du plugin mongoose pour mongoDb
 const mongoose = require('mongoose');
+//importation des routes de l'app
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
+//Importation de path pour sauvegarder les images et
 const path = require('path');
-
+//importation de Helmet pour sécuriser l'app Express
+const helmet = require('helmet');
 
 //Création de l'application
 const app = express();
+
+app.use(helmet()); // Utilisation de Helmet pour sécuriser l'app Express
 
 //connexion à la base de données MongoDB en utilisant mongoose
 mongoose.connect('mongodb+srv://gaetan:gaetanpassword@cluster0.2x8kv.mongodb.net/Hot_takes?retryWrites=true&w=majority',
@@ -27,6 +33,7 @@ app.use((req, res, next) => {
 //Utilisation de bodyParser
 app.use(bobyParser.json());
 
+//Détermination d'un chemin statique pour accéder au dossier local "images"
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //configuration des routes de bases
