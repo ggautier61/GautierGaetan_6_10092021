@@ -1,5 +1,6 @@
 //importation du model
 const passwordModel = require('../models/password');
+const User = require('../models/user');
 
 
 module.exports = (req, res, next) => {
@@ -10,6 +11,5 @@ module.exports = (req, res, next) => {
     } else {
         next();
     }
-
 
 }

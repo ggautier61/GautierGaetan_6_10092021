@@ -79,10 +79,26 @@ exports.getOneSauce = (req, res) => {
 //fonction pour supprimer une sauce en fonction de son id pour la requete DELETE
 exports.deleteOneSauce = (req, res) => {
 
-    //TODO : supprimer image du serveur
-    Sauce.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Sauce supprimée!'}))
+    let filename = '';
+
+    Sauce.findOne({ _id: req.params.id })
+    .then((sauce) => {
+                
+        // On supprime l'ancienne image du serveur
+        filename = sauce.imageUrl.split('/images/')[1];
+       
+        Sauce.deleteOne({ _id: req.params.id })
+        .then(() => {
+            if(filename != '') {
+              fs.unlinkSync(`images/${filename}`);  
+            }
+            res.status(200).json({ message: 'Sauce supprimée!'});
+        })
+        .catch(error => res.status(400).json({ error }));
+        })
     .catch(error => res.status(400).json({ error }));
+
+    
 };
 
 exports.LikeDislike = (req, res) => {
@@ -152,3 +168,4 @@ exports.LikeDislike = (req, res) => {
     
 }
 
+    

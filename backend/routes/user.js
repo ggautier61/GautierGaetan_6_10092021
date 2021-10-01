@@ -20,4 +20,9 @@ const loginLimiter = rateLimit({
 router.post('/signup', checkPassword, userCtrl.signup);
 router.post('/login', loginLimiter, userCtrl.login);
 
+router.use((err, req, res, next) => {
+  console.log(req);
+  next();
+})
+
 module.exports = router;

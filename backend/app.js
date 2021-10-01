@@ -19,7 +19,7 @@ app.use(helmet()); // Utilisation de Helmet pour sécuriser l'app Express
 
 //connexion à la base de données MongoDB en utilisant mongoose.
 //Utilisation d'un fichier de configuration pour stocker login et mot de passe
-mongoose.connect('mongodb+srv://' + process.env.LOGIN_DB + ':' + process.env.PWD_DB + '@cluster0.2x8kv.mongodb.net/Hot_takes?retryWrites=true&w=majorityprocess.env.URL_DB',
+mongoose.connect('mongodb+srv://' + process.env.LOGIN_DB + ':' + process.env.PWD_DB + process.env.URL_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -38,6 +38,7 @@ app.use(bobyParser.json());
 
 //Détermination d'un chemin statique pour accéder au dossier local "images"
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 //configuration des routes de bases
 app.use('/api/sauces', sauceRoutes);
